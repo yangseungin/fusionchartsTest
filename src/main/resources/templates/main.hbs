@@ -1,0 +1,196 @@
+<html>
+<head>
+<title>FusionCharts 테스트</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- FusionCharts.js 추가  -->
+<script src="/js/lib/jquery.min.js"></script>
+<script src="/js/app/fusioncharts/fusioncharts.js"></script>
+<script src="/js/app/fusioncharts/themes/fusioncharts.theme.fusion.js"></script>
+
+
+<script src="/js/app/fusioncharts/jquery-fusioncharts.js"></script>
+
+<script>
+const dataSource = {
+		  chart: {
+		    caption: "PV Exposure Rate",
+		    subcaption: " Top 5 Developed Countries",
+		    numbersuffix: " PV",
+		    showsum: "1",
+		    plottooltext:
+		      "$label produces <b>$dataValue</b> of energy from $seriesName",
+		    theme: "fusion",
+		    drawcrossline: "1"
+		  },
+		  categories: [
+		    {
+		      category: [
+		        {
+		          label: "일반광고"
+		        },
+		        {
+		          label: "타겟팅광고"
+		        },
+		        {
+		          label: "Russia"
+		        },
+		        {
+		          label: "하우스pv"
+		        },
+		        {
+		          label: "제휴광고"
+		        },
+		        {
+		          label: "검색광고"
+		        }
+		      ]
+		    }
+		  ],
+		  dataset: [
+		    {
+		      seriesname: "WiderPlanet",
+		      data: [
+		        {
+		          value: "400"
+		        },
+		        {
+		          value: "830"
+		        },
+		        {
+		          value: "500"
+		        },
+		        {
+		          value: "420"
+		        },
+		        {
+		          value: "790"
+		        },
+		        {
+		          value: "380"
+		        }
+		      ]
+		    },
+		    {
+		      seriesname: "Mobon",
+		      data: [
+		        {
+		          value: "350"
+		        },
+		        {
+		          value: "620"
+		        },
+		        {
+		          value: "410"
+		        },
+		        {
+		          value: "370"
+		        },
+		        {
+		          value: "720"
+		        },
+		        {
+		          value: "310"
+		        }
+		      ]
+		    },
+		    {
+		      seriesname: "Criteo",
+		      data: [
+		        {
+		          value: "210"
+		        },
+		        {
+		          value: "400"
+		        },
+		        {
+		          value: "450"
+		        },
+		        {
+		          value: "180"
+		        },
+		        {
+		          value: "570"
+		        },
+		        {
+		          value: "270"
+		        }
+		      ]
+		    },
+		    {
+		      seriesname: "Google",
+		      data: [
+		        {
+		          value: "180"
+		        },
+		        {
+		          value: "330"
+		        },
+		        {
+		          value: "230"
+		        },
+		        {
+		          value: "160"
+		        },
+		        {
+		          value: "440"
+		        },
+		        {
+		          value: "350"
+		        }
+		      ]
+		    },
+		    {
+		      seriesname: "Interworks",
+		      data: [
+		        {
+		          value: "60"
+		        },
+		        {
+		          value: "200"
+		        },
+		        {
+		          value: "200"
+		        },
+		        {
+		          value: "50"
+		        },
+		        {
+		          value: "230"
+		        },
+		        {
+		          value: "150"
+		        }
+		      ]
+		    }
+		  ]
+		};
+
+		FusionCharts.ready(function() {
+		  var myChart = new FusionCharts({
+		    type: "stackedcolumn2d",
+		    renderAt: "chart-container",
+		    width: "100%",
+		    height: "100%",
+		    dataFormat: "json",
+		    dataSource
+		  }).render();
+		});
+
+</script>
+<script charset="utf-8"
+	src="/js/app/fusioncharts/fusioncharts.charts.js"></script>
+</head>
+
+
+
+<body>
+	<div style="height: 700px;" id="chart-container"></div>
+
+
+
+
+
+</body>
+</html>
