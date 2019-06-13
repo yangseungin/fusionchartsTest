@@ -1,3 +1,3 @@
-# fusionchartsTest
+# 각종 chart.js 테스트용
 
-https://www.fusioncharts.com/
+fusionchartsTest :https://www.fusioncharts.com/
