@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+
+<head>
+	<title>Combo Bar-Line Chart</title>
+
+     <link rel="stylesheet" href="/css/lib/chartjs/Chart.css">
+     <link rel="stylesheet" href="/css/lib/chartjs/Chart.min.css">
+
+
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script> 
+    <script src="/js/app/chartjs/Chart.bundle.js"></script>
+    <script src="/js/app/chartjs/Chart.bundle.min.js"></script>
+    <script src="/js/app/chartjs/Chart.js"></script>
+    <script src="/js/app/chartjs/Chart.min.js"></script> 
+    
+	<style>
+	canvas {
+		-moz-user-select: none;
+		-webkit-user-select: none; 
+		-ms-user-select: none;
+	}
+	</style>
+</head>
+
+
+<body>
+        <canvas id="mixed-chart" width="800" height="450"></canvas>
+
+  
+	
+<script>
+new Chart(document.getElementById("mixed-chart"), {
+    type: 'bar',
+    data: {
+        datasets: [{
+            label: 'Bar Dataset',
+            data: [30, 20, 30, 40]
+        }, {
+            label: 'Line Dataset',
+            data: [20, 40, 10, 50],
+
+            // Changes this dataset to become a line
+            type: 'line'
+        }],
+        labels: ['January', 'February', 'March', 'April']
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Population growth (millions): Europe & Africa'
+      },
+      legend: { display: false }
+    }
+});
+
+</script>
+</body>
+
+</html>

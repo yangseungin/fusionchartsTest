@@ -12,5 +12,9 @@ public class ChartController {
     public String main() {
         return "main";
     }
+	@GetMapping("/chart")
+    public String chart() {
+        return "mixed2";
+    }
 
 }
