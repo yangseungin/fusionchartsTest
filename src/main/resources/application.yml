@@ -2,5 +2,10 @@ spring:
   devtools:
     livereload:
       enabled: true
-  freemarker:
-    cache: false
+    restart:
+      enabled: true
+
+---
+
+handlebars:
+  cache: false
