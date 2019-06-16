@@ -14,7 +14,7 @@ public class ChartController {
     }
 	@GetMapping("/chart")
     public String chart() {
-        return "mixed2";
+        return "mixedChartTest";
     }
 
 }
