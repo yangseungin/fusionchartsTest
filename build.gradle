@@ -25,6 +25,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	compile 'pl.allegro.tech.boot:handlebars-spring-boot-starter:0.3.0'
 	compile 'org.springframework.boot:spring-boot-devtools'
+	compile group: 'org.webjars.npm', name: 'chart.js', version: '2.8.0'
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'com.h2database:h2'
 	annotationProcessor 'org.projectlombok:lombok'
