@@ -1,0 +1,209 @@
+<!doctype html>
+<html>
+
+<head>
+	<title>Combo Bar-Line Chart</title>
+
+     <link rel="stylesheet" href="/webjars/chart.js/2.8.0/dist/Chart.css">
+     <link rel="stylesheet" href="/webjars/chart.js/2.8.0/dist/Chart.min.css">
+
+
+<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script> 
+    <script src="/webjars/chart.js/2.8.0/dist/Chart.bundle.js"></script>
+    <script src="/webjars/chart.js/2.8.0/dist/Chart.bundle.min.js"></script>
+    <script src="/webjars/chart.js/2.8.0/dist/Chart.js"></script>
+    <script src="/webjars/chart.js/2.8.0/dist/Chart.min.js"></script> 
+    
+	<style>
+	canvas {
+		-moz-user-select: none;
+		-webkit-user-select: none; 
+		-ms-user-select: none;
+	}
+	</style>
+</head>
+
+
+<body>
+        <canvas id="mixed-chart" width="800" height="450"></canvas>
+
+  
+	
+<script type="text/javascript">
+var chartData = {
+        labels: ["2019/06/10", "2019/06/11", "2019/06/12", "2019/06/13", "2019/06/14", "2019/06/15", "2019/06/16"],
+        datasets: [{
+            type: 'line',
+            label: '광고비',
+            yAxisID: 'ppm',	//바라보는 y축id
+            borderColor: "rgb(54,162,235)",
+            borderWidth: 2,
+            fill: false,
+            lineTension: 0,
+            data: [
+                Math.random()*10,
+                Math.random()*10,
+                Math.random()*10,
+                Math.random()*10,
+                Math.random()*10,
+                Math.random()*10,
+                Math.random()*10
+            ]
+        }, {
+            type: 'bar',
+            label: '광고주1',
+            yAxisID: 'em',
+            backgroundColor: "rgb(255,99,132,0.4)",
+            data: [
+                Math.random()*25000,
+                Math.random()*25000,
+                Math.random()*25000,
+                Math.random()*25000,
+                Math.random()*25000,
+                Math.random()*25000,
+                Math.random()*25000
+            ],
+            borderColor: 'white', //테두리 
+            borderWidth: 2
+        }
+        , {
+            type: 'bar',
+            label: '광고주2',
+            yAxisID: 'em',
+            backgroundColor: "rgb(103,255,132,0.4)",
+            data: [
+                Math.random()*25000,
+                Math.random()*25000,
+                Math.random()*25000,
+                Math.random()*25000,
+                Math.random()*25000,
+                Math.random()*25000,
+                Math.random()*25000
+            ],
+            borderColor: 'white', //테두리 
+            borderWidth: 2
+        }
+        , {
+            type: 'bar',
+            label: '광고주3',
+            yAxisID: 'em',
+            backgroundColor: "rgb(255,255,0,0.4)",
+            data: [
+                Math.random()*25000,
+                Math.random()*25000,
+                Math.random()*25000,
+                Math.random()*25000,
+                Math.random()*25000,
+                Math.random()*25000,
+                Math.random()*25000
+            ],
+            borderColor: 'white', //테두리 
+            borderWidth: 2
+        }]
+ 
+    };
+   
+   $.fn.hasScrollBar = function() {
+      return (this.prop("scrollHeight") == 0 && this.prop("clientHeight") == 0)
+              || (this.prop("scrollHeight") > this.prop("clientHeight"));
+   };
+ 
+    window.onload = function() {
+    var ctx9 = $('#chart9').get(0).getContext("2d");
+    var ctx9Axis2 = $('#chart9Axis2').get(0).getContext("2d");
+     
+    //changeChartLength(chartData);
+     
+    window.theChart9 = new Chart(ctx9, {
+            type: 'bar',
+            data: chartData,
+            options: {
+            	title: {
+					display: true,
+					text: 'PV, 광고비 종합차트'
+				},
+				tooltips: {
+					mode: 'index',
+					intersect: false
+				},
+                responsive: true,
+                scales: {
+                  xAxes: [{
+                    barThickness:50,
+                    stacked: true,
+                      gridLines: {
+                        display: false
+                      },
+                        offset:true
+                    }],
+                    yAxes: [{
+                        id: 'em',
+                        type: 'linear',
+                        poition: 'left',
+                        stacked: true,
+                        ticks: {
+                          max: 75000,
+                          min: 0,
+                          stepSize: 5000
+                        },
+                        gridLines: {
+                        drawBorder: false//축과 데이터의 경계선 표시 여부
+                      }
+                      }, {
+                        id: 'ppm',
+                        type: 'linear',
+                        position: 'right',
+                        ticks: {
+                          max: 10,
+                          min: 0,
+                        stepSize: 2
+                        },
+                        gridLines: {
+                        drawBorder: false//축과 데이터의 경계선 표시 여부
+                      }
+                      }]
+                },
+                animation: {
+                  onComplete: function (animation) {
+                    var sourceCanvas = ctx9.canvas;
+                    var copyWidth = this.scales["em"].width;
+                    var copyWidth2 = this.scales["ppm"].width;
+                    var copyHeight = this.chart.height;
+                    var targetElementWidth = ctx9.canvas.clientWidth;
+                      var targetElementHeight = ctx9.canvas.clientHeight;
+                       
+                    
+                    
+                    ctx9Axis2.canvas.height = copyHeight;
+                     
+                    var tmp = $("body").hasScrollBar() ? 16 : 0;
+              ctx9Axis2.canvas.width = targetElementWidth > window.innerWidth-tmp ? window.innerWidth-tmp : targetElementWidth;
+              ctx9Axis2.drawImage(sourceCanvas, 
+                  sourceCanvas.width - copyWidth2-15, 
+                  0, 
+                  copyWidth2+15, 
+                  sourceCanvas.height, 
+                  ctx9Axis2.canvas.width - copyWidth2 - 13.5 + (sourceCanvas.height - ctx9Axis2.canvas.height)/15, 
+                  0, 
+                  copyWidth2 + 13.5 - (sourceCanvas.height - ctx9Axis2.canvas.height)/15, 
+                  copyHeight);
+                  }
+                }
+            }
+    });
+    }
+
+</script>
+</body>
+	<div class="chartWrapper">
+    <div class="chartAreaWrapper" style="overflow-x:scroll;">
+      <div class="chartAreaWrapper2" id="chartAreaWrapper2">
+        <canvas id="chart9">
+      </div>
+    </div>
+     
+      <canvas id="chart9Axis" height="300" width="32"></canvas>
+      <canvas id="chart9Axis2" height="300" width="32" style=""></canvas>
+  </div>
+</html>
